@@ -220,4 +220,4 @@ augroup END
 " onoremap ah :<c-u>execute 'normal! ?^\\(=\\\|-\\)\\1\\+$\r:noh\rg_vk0'<CR>
 " inside next email address operator pending mapping
 " Hint: use /...some regex...<cr> for this
-" onoremap in@ :<c-u>execute 'normal! /@\\zs\r:noh\rvE'<CR>
+" onoremap in@ :<c-u>execute 'normal! /@\rl:noh\rvE'<CR>
