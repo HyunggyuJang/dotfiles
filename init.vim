@@ -3,8 +3,8 @@
 " Key {{{2
 " Leader key convention 
 " cons: hard to reverse f{motion}
-let mapleader = ","
-let maplocalleader = ","
+let mapleader = ','
+let maplocalleader = ','
 " Search {{{2
 " grepper {{{3
 let g:grepper		= {}
@@ -14,7 +14,7 @@ let g:grepper.tools	= ['grep', 'git', 'rg']
 " let g:grepper.operator.prompt = 1
 " ↑ doesn't work: There are no dictionary key such as operator.prompt
 " fix ↓
-if !exists("g:grepper.operator")
+if !exists('g:grepper.operator')
 	let g:grepper.operator = {}
 endif
 let g:grepper.operator.prompt = 1
@@ -168,6 +168,8 @@ set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
 set showbreak=↪
 set tabstop=8 softtabstop=4 shiftwidth=4 expandtab
 " colorscheme badwolf
+
+set mouse=h
 
 " Modern Vim {{{2
 " Chapter 5
