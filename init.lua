@@ -4,8 +4,7 @@ do
     local changeInput = function()
         hs.keycodes.currentSourceID(korean)
     end
-    hs.hotkey.bind({'cmd','ctrl'}, 'space', changeInput)
-    -- hs.hotkey.bind({},'escape',function() hs.eventtap.keyStroke({}, 'CAPS_LOCK') end)
+    hs.hotkey.bind({'cmd'}, 'space', changeInput)
 end
 DelMode = {mode = nil, enabled = true}
 

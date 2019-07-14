@@ -85,6 +85,14 @@ call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-abolish')
 call minpac#add('tpope/vim-scriptease', {'type': 'opt'})
 call minpac#add('k-takata/minpac', {'type': 'opt'})
+" My plugin
+call minpac#add('hyunggyujang/vim-potion', {'type': 'opt'})
+" Colorscheme
+" call minpac#add('junegunn/seoul256.vim', {'type': 'opt'})
+" call minpac#add('lifepillar/vim-solarized8', {'type': 'opt'})
+" call minpac#add('sjl/badwolf', {'type': 'opt'})
+" For learning markdown
+call minpac#add('sjl/learnvimscriptthehardway', {'type': 'opt'})
 
 command! PackUpdate call minpac#update()
 command! PackClean call minpac#clean()
@@ -97,7 +105,8 @@ nnoremap <C-p> :<C-u>FZF<CR>
 " Terminal {{{2
 if has('nvim')
 	tnoremap <Esc> <C-\><C-n> 
-	tnoremap <C-v><Esc> <Esc>
+	tnoremap <M-]> <Esc>
+	tnoremap <expr> <M-r> '<C-\><C-n>"' . nr2char(getchar()) . 'pi'
 endif
 " Window manuver {{{3
 inoremap <M-h> <esc><c-w>h 
@@ -138,12 +147,33 @@ nnoremap <Leader>* :Grepper -cword -noprompt<CR>
 " fixed in Configuartion
 nmap gs <plug>(GrepperOperator)
 xmap gs <plug>(GrepperOperator)
+
+" LearnVimscript The hard way {{{2
+augroup LearnVimscript
+	autocmd!
+	autocmd FileType python setlocal nowrap nospell number
+	autocmd FileType python nnoremap <buffer> <localleader>c I# <esc>
+	autocmd FileType python xnoremap <buffer> <localleader>c :normal I# <esc>
+	autocmd FileType javascript setlocal nowrap nospell number
+	autocmd FileType javascript nnoremap <buffer> <localleader>c I// <esc>
+	autocmd FileType javascript xnoremap <buffer> <localleader>c :normal I// <esc>
+	autocmd FileType vim nnoremap <buffer> <localleader>c I" <esc>
+	autocmd FileType vim xnoremap <buffer> <localleader>c :normal I" <esc>
+augroup END
+
 " Preferences {{{1
+
+" from Steve Losh <https://bitbucket.org/sjl/dotfiles/src/default/vim/vimrc>
+set listchars=tab:▸\ ,eol:¬,extends:❯,precedes:❮
+set showbreak=↪
+set tabstop=8 softtabstop=4 shiftwidth=4 expandtab
+" colorscheme badwolf
+
 " Modern Vim {{{2
 " Chapter 5
+" Terminal {{{3
 if has('nvim')
-"	highlight! link TermCursor Cursor
-	highlight! TermCursorNC guibg=red guifg=white ctermbg=1 ctermfg=15
+	highlight! TermCursorNC ctermbg=Magenta
 endif
 
 " Chapter 6
@@ -182,42 +212,3 @@ endfunction
 " See :h <expr>
 call SetupCommandAlias("grep", "GrepperGrep")
 
-" Learn Vimscript the Hard Way {{{1
-" Chapter 1 {{{2
-" echo '>ˆ.ˆ<'
-" Chapter 3 {{{2
-" map - ddp
-" map _ ddkP
-" to reset mapping: unmap
-" Chapter 4 {{{2
-" imap <C-u> <Esc>viwUea
-" nmap <C-u> viwUe
-" Chapter 9 {{{2
-" surround with single quote
-" nnoremap <Leader>' viw<esc>a'<esc>hbi'<esc>lel
-" vnoremap <Leader>' <esc>`<i'<esc>`>a'<esc>
-" Strong version of h, l
-" nnoremap H 0
-" nnoremap L $
-" Chapter 12 {{{2
-augroup LearnVimscript
-	autocmd!
-	autocmd FileType python setlocal nowrap nospell number
-	autocmd FileType python nnoremap <buffer> <localleader>c I# <esc>
-	autocmd FileType python xnoremap <buffer> <localleader>c :normal I# <esc>
-	autocmd FileType javascript setlocal nowrap nospell number
-	autocmd FileType javascript nnoremap <buffer> <localleader>c I// <esc>
-	autocmd FileType javascript xnoremap <buffer> <localleader>c :normal I// <esc>
-	autocmd FileType vim nnoremap <buffer> <localleader>c I" <esc>
-	autocmd FileType vim xnoremap <buffer> <localleader>c :normal I" <esc>
-augroup END
-" Chapter 15 {{{2
-" around next parentheses
-" onoremap n( f(va(<CR>
-" onoremap l( F(va(<CR>
-" Chapter 16 {{{2
-" onoremap ih :<c-u>execute 'normal! ?^\\(=\\\|-\\)\\1\\+$\r:noh\rkvg_'<CR>
-" onoremap ah :<c-u>execute 'normal! ?^\\(=\\\|-\\)\\1\\+$\r:noh\rg_vk0'<CR>
-" inside next email address operator pending mapping
-" Hint: use /...some regex...<cr> for this
-" onoremap in@ :<c-u>execute 'normal! /@\rl:noh\rvE'<CR>
