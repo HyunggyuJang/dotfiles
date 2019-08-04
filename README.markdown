@@ -23,4 +23,4 @@ directory.
 
 I'm using JIS keyboard layout with mac. And I'm korean so that have to use
 korean keylayout too. I've got best keymapping configuration for my
-environment by colaboration with Karabiner
+environment by colaboration with Karabiner.

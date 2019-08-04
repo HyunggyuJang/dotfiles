@@ -6,53 +6,70 @@ do
     end
     hs.hotkey.bind({'cmd'}, 'space', changeInput)
 end
-DelMode = {mode = nil, enabled = true}
 
-function DelMode:new()
-    self.mode = hs.hotkey.modal.new()
-    self.enabled = false
-    self.watchers = {}
-    return self
-end
-function DelMode:enable()
-    if self.enabled then return end
-    self.mode:enter()
-    self.enabled = true
-    -- print "deactivated works"
-end
-function DelMode:exit()
-    if not self.enabled then return end
-    self.mode:exit()
-    self.enabled = false
-    -- print "it works"
-end
-function DelMode:bindModeKeys()
+local delMode = hs.hotkey.modal.new()
+local currentApp = nil
+local appsWithNativeDelBinding = {
+    'emacs',
+    'iterm2',
+    'xquartz'
+}
+
+function assignKeys()
     local function delChar() hs.eventtap.keyStroke({},'delete') end
     local delWord = function() hs.eventtap.keyStroke({'alt'},'delete') end
     local delLine = function() hs.eventtap.keyStroke({'cmd'},'delete') end
-    self.mode:bind({'ctrl'}, 'h', delChar, nil, delChar)
-    self.mode:bind({'ctrl'}, 'w', delWord, nil, delWord)
-    self.mode:bind({'ctrl'}, 'u', delLine, nil, delLine)
-end
-function DelMode:disableForApp(disabledApp)
-  local myDel = self
-
-  local watcher =
-    hs.application.watcher.new(function(applicationName, eventType)
-      if disabledApp ~= applicationName then return end
-      if eventType == hs.application.watcher.activated then
-        myDel:exit()
-      elseif eventType == hs.application.watcher.deactivated then
-        myDel:enable()
-      end
-    end)
-
-  watcher:start()
-
-  self.watchers[disabledApp] = watcher
+    delMode:bind({'ctrl'}, 'h', delChar, nil, delChar)
+    delMode:bind({'ctrl'}, 'w', delWord, nil, delWord)
+    delMode:bind({'ctrl'}, 'u', delLine, nil, delLine)
 end
 
-myDel = DelMode:new()
-myDel:bindModeKeys()
-myDel:enable()
-myDel:disableForApp('iTerm2')
+function hasValue (tab, val)
+  for index, value in ipairs(tab) do
+    if value == val then
+      return true
+    end
+  end
+
+  return false
+end
+
+function chooseKeyMap()
+  if hasValue(appsWithNativeDelBinding, currentApp:lower()) then
+    print('Turnning OFF keybindings for: ' .. currentApp)
+    delMode:exit()      
+
+  else
+    print('Turning ON keybindings for: ' .. currentApp)
+    delMode:enter()      
+  end
+end
+
+function appOnStartup()
+  app = hs.application.frontmostApplication()
+
+  if app ~= nil then
+    return app:title()
+  end
+end
+
+function appWatcherFunction(appName, eventType, appObject)
+  if (eventType == hs.application.watcher.activated) then
+    currentApp = appName
+    
+    chooseKeyMap()    
+  end
+end
+
+-- Application start
+print('---------------------------------')
+print('Starting Delmode hammerspoon Script')
+
+assignKeys()
+
+currentApp = appOnStartup()
+
+chooseKeyMap()
+
+local appWatcher = hs.application.watcher.new(appWatcherFunction)
+appWatcher:start()

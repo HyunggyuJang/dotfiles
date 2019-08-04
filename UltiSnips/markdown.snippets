@@ -1,0 +1,38 @@
+snippet meta "meta data for markdown" b
+---
+${1:title: $2}
+${3:tags: [$4]}
+---
+$0
+endsnippet
+
+snippet mm "MathJax support, Inline math" wA
+\$${1:${VISUAL}}\$$0
+endsnippet
+
+snippet mev "MathJax support, Math Environment" w
+\begin{equation}${1:${VISUAL}}\end{equation}$0
+endsnippet
+
+snippet "you?t?b?" "Youtube Insertion" r
+[![${1:${VISUAL: Discription}}](https://img.youtube.com/vi/${2:ID}/0.jpg)](https://www.youtube.com/watch?v=$2)
+endsnippet
+
+snippet ~~ "strike"
+~~${1:${VISUAL}}~~$0
+endsnippet
+
+snippet text "text object in math mode" w
+\text{${1:${VISUAL}}}$0
+endsnippet
+
+snippet frac "fraction in mathjax" w
+\frac{${1:${VISUAL}}}{$2}$0
+endsnippet
+
+snippet message "message box" w
+<div id="massage">
+${1:${VISUAL}}
+</div>
+$0
+endsnippet
