@@ -138,9 +138,9 @@ call minpac#add('Shougo/deoplete.nvim')
 call minpac#add('deoplete-plugins/deoplete-dictionary')
     let g:deoplete#enable_at_startup = 1
 " for selecting forms. (scheme)
-call minpac#add('guns/vim-sexp')
+call minpac#add('guns/vim-sexp', {'type': 'opt'})
 " binding for above
-call minpac#add('tpope/vim-sexp-mappings-for-regular-people')
+call minpac#add('tpope/vim-sexp-mappings-for-regular-people', {'type': 'opt'})
 " repeat custom
 call minpac#add('tpope/vim-repeat')
 " all the surround related operator

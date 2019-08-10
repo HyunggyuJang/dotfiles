@@ -12,7 +12,8 @@ local currentApp = nil
 local appsWithNativeDelBinding = {
     'emacs',
     'iterm2',
-    'xquartz'
+    'xquartz',
+    'isabelle2019'
 }
 
 function assignKeys()
