@@ -13,7 +13,8 @@ local appsWithNativeDelBinding = {
     'emacs',
     'iterm2',
     'xquartz',
-    'isabelle2019'
+    'isabelle2020',
+    'code'
 }
 
 function assignKeys()
