@@ -293,6 +293,29 @@
                             }
                         ]
                     },
+		    {
+                        "description": "Make ^Space change a input source into korean.",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "spacebar",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "control"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "select_input_source": {
+											"language": "^ko$"
+										}
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
                     {
                         "description": "Bash style Emacs key bindings (rev 2)",
                         "manipulators": [
