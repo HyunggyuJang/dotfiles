@@ -16,174 +16,6 @@
                 },
                 "rules": [
                     {
-                        "description": "control + f1 to display_brightness_decrement",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "f1",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "display_brightness_decrement"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "control + f2 to display_brightness_increment",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "f2",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "display_brightness_increment"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "control + f3 to rewind",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "f3",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "rewind"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "control + f4 to play_or_pause",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "f4",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "play_or_pause"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "control + f5 to fastforward",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "f5",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "fastforward"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "control + f10 to mute",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "f10",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "mute"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "control + f11 to volume_decrement",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "f11",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "volume_decrement"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "control + f12 to volume_increment",
-                        "manipulators": [
-                            {
-                                "from": {
-                                    "key_code": "f12",
-                                    "modifiers": {
-                                        "mandatory": [
-                                            "control"
-                                        ]
-                                    }
-                                },
-                                "to": [
-                                    {
-                                        "key_code": "volume_increment"
-                                    }
-                                ],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
                         "description": "コマンドキーをオプションキーに置き換える。",
                         "manipulators": [
                             {
@@ -249,17 +81,17 @@
                                 ],
                                 "type": "basic"
                             },
-			    {
-				"conditions": [
-				    {
-					"input_sources": [
-					    {
-						"language": "ja"
-					    }
-					],
-					"type": "input_source_if"
-				    }
-				],
+                            {
+                                "conditions": [
+                                    {
+                                        "input_sources": [
+                                            {
+                                                "language": "ja"
+                                            }
+                                        ],
+                                        "type": "input_source_if"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "right_command",
                                     "modifiers": {
@@ -273,30 +105,30 @@
                                         "key_code": "right_option"
                                     }
                                 ],
-				"to_if_alone": [
-				    {
-                                        "key_code": "japanese_eisuu",
-					"hold_down_milliseconds": 200
+                                "to_if_alone": [
+                                    {
+                                        "hold_down_milliseconds": 100,
+                                        "key_code": "japanese_eisuu"
                                     },
                                     {
                                         "select_input_source": {
                                             "input_source_id": "^com\\.apple\\.inputmethod\\.Korean\\.2SetKorean$"
                                         }
                                     }
-				],
+                                ],
                                 "type": "basic"
                             },
                             {
-				"conditions": [
-				    {
-					"input_sources": [
-					    {
-						"language": "ja"
-					    }
-					],
-					"type": "input_source_unless"
-				    }
-				],
+                                "conditions": [
+                                    {
+                                        "input_sources": [
+                                            {
+                                                "language": "ja"
+                                            }
+                                        ],
+                                        "type": "input_source_unless"
+                                    }
+                                ],
                                 "from": {
                                     "key_code": "right_command",
                                     "modifiers": {
@@ -310,13 +142,13 @@
                                         "key_code": "right_option"
                                     }
                                 ],
-				"to_if_alone": [
+                                "to_if_alone": [
                                     {
                                         "select_input_source": {
                                             "input_source_id": "^com\\.apple\\.inputmethod\\.Korean\\.2SetKorean$"
                                         }
                                     }
-				],
+                                ],
                                 "type": "basic"
                             }
                         ]
@@ -341,6 +173,32 @@
                                 "to_if_alone": [
                                     {
                                         "key_code": "escape"
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Change return key to control if pressed with other keys, to return if pressed alone.",
+                        "manipulators": [
+                            {
+                                "from": {
+                                    "key_code": "return_or_enter",
+                                    "modifiers": {
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "right_control"
+                                    }
+                                ],
+                                "to_if_alone": [
+                                    {
+                                        "key_code": "return_or_enter"
                                     }
                                 ],
                                 "type": "basic"
@@ -1302,7 +1160,7 @@
                         "key_code": "caps_lock"
                     },
                     "to": {
-                        "key_code": "left_control"
+                        "key_code": "fn"
                     }
                 },
                 {
@@ -1311,14 +1169,6 @@
                     },
                     "to": {
                         "key_code": "caps_lock"
-                    }
-                },
-                {
-                    "from": {
-                        "key_code": "fn"
-                    },
-                    "to": {
-                        "key_code": "right_control"
                     }
                 },
                 {
